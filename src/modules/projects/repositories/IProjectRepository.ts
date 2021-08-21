@@ -5,6 +5,7 @@ interface IProjectRepository {
     create(data: ICreateProjectDTO): Promise<Project>
     findByName(title: string): Promise<Project>
     findById(id: string): Promise<Project>
+    findProjects(): Promise<Project[]>
 }
 
 export { IProjectRepository }
