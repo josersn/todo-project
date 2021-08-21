@@ -1,4 +1,5 @@
 import { ICreateProjectDTO } from "../../dtos/ICreateProjectDTO";
+import { IUpdateProjectDTO } from "../../dtos/IUpdateProjectDTO";
 import { Project } from "../../entities/Project";
 import { IProjectRepository } from "../IProjectRepository";
 
@@ -31,6 +32,21 @@ class ProjectReposity implements IProjectRepository {
 
     async findProjects(): Promise<Project[]> {
         return this.projects;
+    }
+
+    async updateProject({ project, title }: IUpdateProjectDTO): Promise<Project> {
+        const index = this.projects.indexOf(project);
+
+        this.projects[index].title = title;
+
+        return this.projects[index];
+
+    }
+
+    async deleteProject(project: Project): Promise<void> {
+        const index = this.projects.indexOf(project);
+
+        this.projects.splice(index, 1);
     }
 }
 
