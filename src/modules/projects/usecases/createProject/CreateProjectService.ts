@@ -14,9 +14,15 @@ class CreateProjectService {
 
     async execute({ id, title, tasks }: IRequest): Promise<Project> {
 
-        const projectAlreadyExist = await this.repository.findByName(title);
+        const projectNameAlreadyExist = await this.repository.findByName(title);
 
-        if(projectAlreadyExist) {
+        if(projectNameAlreadyExist) {
+            throw new AppError("Project Already Exists"); 
+        }
+
+        const projectIDAlreadyExist = await this.repository.findById(id);
+
+        if(projectIDAlreadyExist) {
             throw new AppError("Project Already Exists"); 
         }
 

@@ -24,6 +24,10 @@ class ProjectReposity implements IProjectRepository {
     async findByName(title: string): Promise<Project> {
         return this.projects.find((item) => item.title === title);
     }
+
+    async findById(id: string): Promise<Project> {
+        return this.projects.find((item) => item.id === id);
+    }
 }
 
 export { ProjectReposity }
