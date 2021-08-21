@@ -30,6 +30,7 @@ describe("Update Project", () => {
         expect(updatedProject.title).toBe("new project title");
 
     })
+    
     it("Should no be able to update a nonexistent project", () => {
         expect(async () => {
             await updateProjectService.execute({

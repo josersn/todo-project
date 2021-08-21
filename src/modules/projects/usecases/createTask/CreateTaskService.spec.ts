@@ -1,3 +1,4 @@
+import { AppError } from "../../../../shared/errors/AppError";
 import { Project } from "../../entities/Project";
 import { ProjectReposity } from "../../repositories/implementations/ProjectReposity";
 import { CreateTaskService } from "./CreateTaskService"
@@ -26,5 +27,15 @@ describe("Create Task", () => {
         });
 
         expect(updatedProject.tasks).toEqual(["New tasks"]);
+    })
+
+    it("Should no be able to create a task in nonexistent project", () => {
+        expect(async () => {
+            await createTaskService.execute({
+                id: "18",
+                title: "New tasks"
+            });
+        }).rejects.toBeInstanceOf(AppError);
+
     })
 })
