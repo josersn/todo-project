@@ -6,16 +6,19 @@ class ProjectReposity implements IProjectRepository {
 
     projects: Project[] = [];
 
-    async create({ id, tasks, title }: ICreateProjectDTO): Promise<void> {
+    async create({ id, tasks, title }: ICreateProjectDTO): Promise<Project> {
         const project = new Project();
 
         Object.assign(project, {
             id,
             tasks,
-            title
+            title,
+            created_at: new Date()
         })
 
         this.projects.push(project);
+
+        return project;
     }
 }
 

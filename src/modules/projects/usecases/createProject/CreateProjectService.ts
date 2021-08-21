@@ -1,3 +1,4 @@
+import { Project } from "../../entities/Project";
 import { IProjectRepository } from "../../repositories/IProjectRepository";
 
 interface IRequest {
@@ -8,9 +9,13 @@ interface IRequest {
 
 class CreateProjectService {
 
-    constructor(private repository: IProjectRepository ) {}
+    constructor(private repository: IProjectRepository) { }
 
-    async execute({ id, title, tasks }: IRequest): Promise<void> { }
+    async execute({ id, title, tasks }: IRequest): Promise<Project> {
+        const project = await this.repository.create({ id, title, tasks });
+
+        return project;
+    }
 }
 
 export { CreateProjectService }

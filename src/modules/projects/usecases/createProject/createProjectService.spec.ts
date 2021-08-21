@@ -19,6 +19,9 @@ describe("Create Project", () => {
             tasks: []
         }
 
-        await createProjectService.execute(project);
+        const newProject = await createProjectService.execute(project);
+        
+        expect(newProject).toHaveProperty("created_at");
+
     })
 });

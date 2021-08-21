@@ -6,6 +6,8 @@ class Project {
 
     task: string[];
 
+    created_at?: Date;
+
 }
 
 export {Project};
