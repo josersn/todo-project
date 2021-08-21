@@ -24,4 +24,17 @@ describe("Create Project", () => {
         expect(newProject).toHaveProperty("created_at");
 
     })
+
+    it("Should not be able to create a new project with an exists name project", async () => {
+        expect(async () => {
+            const project = {
+                id: "uuid-1",
+                title: "Project Test",
+                tasks: []
+            }
+    
+            const firstProject = await createProjectService.execute(project);
+            const secondProject = await createProjectService.execute(project);
+        }).rejects.toBeInstanceOf(AppError)
+    })
 });
