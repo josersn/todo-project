@@ -1,8 +1,21 @@
-describe("Create Project", () => {
-    it("unit test", () => {
-        const soma = 2 + 2;
-        const result = 4;
+import { CreateProjectService } from "./CreateProjectService";
 
-        expect(soma).toBe(result);
+let createProjectService: CreateProjectService;
+
+describe("Create Project", () => {
+
+    beforeAll(() => {
+        createProjectService = new CreateProjectService();
+    })
+
+    it("Should be able to create a new project", async () => {
+
+        const project = {
+            id: "uuid-1",
+            title: "Project Test",
+            tasks: []
+        }
+
+        await createProjectService.execute(project);
     })
 });
