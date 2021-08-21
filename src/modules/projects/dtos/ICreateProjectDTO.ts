@@ -1,7 +1,7 @@
 interface ICreateProjectDTO {
     id: string;
     title: string;
-    tasks: string[];
+    tasks?: string[];
 }
 
 export { ICreateProjectDTO }

@@ -4,7 +4,7 @@ class Project {
     
     title: string;
 
-    tasks: string[];
+    tasks?: string[];
 
     created_at?: Date;
 

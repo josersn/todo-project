@@ -1,4 +1,5 @@
 import { ICreateProjectDTO } from "../../dtos/ICreateProjectDTO";
+import { ICreateTaskDTO } from "../../dtos/ICreateTaskDTO";
 import { IUpdateProjectDTO } from "../../dtos/IUpdateProjectDTO";
 import { Project } from "../../entities/Project";
 import { IProjectRepository } from "../IProjectRepository";
@@ -7,7 +8,7 @@ class ProjectReposity implements IProjectRepository {
 
     projects: Project[] = [];
 
-    async create({ id, tasks, title }: ICreateProjectDTO): Promise<Project> {
+    async create({ id, tasks = [], title }: ICreateProjectDTO): Promise<Project> {
         const project = new Project();
 
         Object.assign(project, {
@@ -48,6 +49,16 @@ class ProjectReposity implements IProjectRepository {
 
         this.projects.splice(index, 1);
     }
+
+    async createTask({ title, project }: ICreateTaskDTO): Promise<Project> {
+        const index = this.projects.indexOf(project);
+
+        const projectToUpdate = this.projects[index];
+
+        projectToUpdate.tasks.push(title);
+
+        return projectToUpdate;
+     }
 }
 
 export { ProjectReposity }
