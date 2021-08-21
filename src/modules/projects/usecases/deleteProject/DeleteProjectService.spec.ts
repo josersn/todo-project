@@ -1,3 +1,4 @@
+import { AppError } from "../../../../shared/errors/AppError";
 import { Project } from "../../entities/Project";
 import { ProjectReposity } from "../../repositories/implementations/ProjectReposity";
 import { DeleteProjectService } from "./DeleteProjectService"
@@ -26,6 +27,14 @@ describe("Delete Project", () => {
         const projects = await projectRepository.findProjects();
 
         expect(projects).toEqual([]);
+
+    })
+
+    it("Should not be able to delete a nonexistent project", async () => {
+
+        expect(async () => {
+            await deleteProjectService.execute("uuid-1");
+        }).rejects.toBeInstanceOf(AppError);
 
     })
 })
