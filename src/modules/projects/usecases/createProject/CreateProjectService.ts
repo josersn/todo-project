@@ -1,3 +1,4 @@
+import { IProjectRepository } from "../../repositories/IProjectRepository";
 
 interface IRequest {
     id: string;
@@ -6,6 +7,8 @@ interface IRequest {
 }
 
 class CreateProjectService {
+
+    constructor(private repository: IProjectRepository ) {}
 
     async execute({ id, title, tasks }: IRequest): Promise<void> { }
 }

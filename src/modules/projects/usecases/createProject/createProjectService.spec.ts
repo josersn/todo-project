@@ -1,11 +1,14 @@
+import { ProjectReposity } from "../../repositories/implementations/ProjectReposity";
 import { CreateProjectService } from "./CreateProjectService";
 
 let createProjectService: CreateProjectService;
+let projectReposity: ProjectReposity;
 
 describe("Create Project", () => {
 
     beforeAll(() => {
-        createProjectService = new CreateProjectService();
+        projectReposity = new ProjectReposity()
+        createProjectService = new CreateProjectService(projectReposity);
     })
 
     it("Should be able to create a new project", async () => {
