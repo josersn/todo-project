@@ -1,3 +1,4 @@
+import { AppError } from "../../../../shared/errors/AppError";
 import { Project } from "../../entities/Project";
 import { ProjectReposity } from "../../repositories/implementations/ProjectReposity";
 import { UpdateProjectService } from "./UpdateProjectService"
@@ -12,7 +13,7 @@ describe("Update Project", () => {
         updateProjectService = new UpdateProjectService(projectRepository);
     })
 
-    it("Should be able to update a project", async() => {
+    it("Should be able to update a project", async () => {
         const project: Project = {
             id: "1",
             title: "New Project",
@@ -22,12 +23,19 @@ describe("Update Project", () => {
         await projectRepository.create(project);
 
         const updatedProject = await updateProjectService.execute({
-                id: project.id,
-                title: "new project title"
+            id: project.id,
+            title: "new project title"
         });
 
         expect(updatedProject.title).toBe("new project title");
 
     })
-    it("Should no be able to update a nonexistent project", () => {})
+    it("Should no be able to update a nonexistent project", () => {
+        expect(async () => {
+            await updateProjectService.execute({
+                id: "12",
+                title: "new project title"
+            });
+        }).rejects.toBeInstanceOf(AppError)
+    })
 })

@@ -14,6 +14,10 @@ class UpdateProjectService {
     async execute({id, title}: IRequest): Promise<Project> {
         const project = await this.repository.findById(id);
 
+        if(!project) {
+            throw new AppError("Project not exists");
+        }
+
         project.title = title;
 
         return project;
