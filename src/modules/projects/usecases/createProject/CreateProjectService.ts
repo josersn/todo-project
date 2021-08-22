@@ -16,14 +16,14 @@ class CreateProjectService {
 
         const projectNameAlreadyExist = await this.repository.findByName(title);
 
-        if(projectNameAlreadyExist) {
-            throw new AppError("Project Already Exists"); 
+        if (projectNameAlreadyExist) {
+            throw new AppError("Project Already Exists");
         }
 
-        const projectIDAlreadyExist = await this.repository.findById(id);
+        const projectIdAlreadyExist = await this.repository.findById(id);
 
-        if(projectIDAlreadyExist) {
-            throw new AppError("Project Already Exists"); 
+        if (projectIdAlreadyExist) {
+            throw new AppError("Project Already Exists");
         }
 
         const project = await this.repository.create({ id, title, tasks });

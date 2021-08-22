@@ -1,9 +1,9 @@
 import { AppError } from "../../../../shared/errors/AppError";
-import { ProjectReposity } from "../../repositories/implementations/ProjectReposity";
+import { ProjectRepository } from "../../repositories/implementations/ProjectRepository";
 
 class DeleteProjectService {
 
-    constructor(private repository: ProjectReposity) { }
+    constructor(private repository: ProjectRepository) { }
     async execute(id: string): Promise<void> {
         const project = await this.repository.findById(id);
 

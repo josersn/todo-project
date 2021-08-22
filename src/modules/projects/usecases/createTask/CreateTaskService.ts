@@ -1,6 +1,7 @@
 import { AppError } from "../../../../shared/errors/AppError";
 import { Project } from "../../entities/Project";
-import { ProjectReposity } from "../../repositories/implementations/ProjectReposity";
+import { ProjectRepository } from "../../repositories/implementations/ProjectRepository";
+
 
 interface IRequest {
     id: string;
@@ -9,7 +10,7 @@ interface IRequest {
 
 class CreateTaskService {
 
-    constructor(private repository: ProjectReposity) { }
+    constructor(private repository: ProjectRepository) { }
 
     async execute({ id, title }: IRequest): Promise<Project> {
         const project = await this.repository.findById(id);
