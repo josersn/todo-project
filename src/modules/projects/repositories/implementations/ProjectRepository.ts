@@ -4,9 +4,22 @@ import { IUpdateProjectDTO } from "../../dtos/IUpdateProjectDTO";
 import { Project } from "../../entities/Project";
 import { IProjectRepository } from "../IProjectRepository";
 
-class ProjectReposity implements IProjectRepository {
+class ProjectRepository implements IProjectRepository {
 
     projects: Project[] = [];
+    private static INSTANCE: ProjectRepository;
+
+    private constructor() {
+        this.projects = []
+    }
+
+    public static getInstance(): ProjectRepository {
+        if (!ProjectRepository.INSTANCE) {
+            ProjectRepository.INSTANCE = new ProjectRepository()
+        }
+
+        return ProjectRepository.INSTANCE;
+    }
 
     async create({ id, tasks = [], title }: ICreateProjectDTO): Promise<Project> {
         const project = new Project();
@@ -58,7 +71,7 @@ class ProjectReposity implements IProjectRepository {
         projectToUpdate.tasks.push(title);
 
         return projectToUpdate;
-     }
+    }
 }
 
-export { ProjectReposity }
+export { ProjectRepository }
