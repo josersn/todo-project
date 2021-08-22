@@ -5,14 +5,14 @@ import { IProjectRepository } from "../../repositories/IProjectRepository";
 interface IRequest {
     id: string;
     title: string;
-    tasks: string[];
+    tasks?: string[];
 }
 
 class CreateProjectService {
 
     constructor(private repository: IProjectRepository) { }
 
-    async execute({ id, title, tasks }: IRequest): Promise<Project> {
+    async execute({ id, title, tasks = [] }: IRequest): Promise<Project> {
 
         const projectNameAlreadyExist = await this.repository.findByName(title);
 
