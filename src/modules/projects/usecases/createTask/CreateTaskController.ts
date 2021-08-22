@@ -10,7 +10,7 @@ class CreateTaskController {
         const { id } = req.params;
         const { title } = req.body
 
-        const project = this.service.execute({ id, title });
+        const project = await this.service.execute({ id, title });
 
         return res.status(201).json(project);
     }
