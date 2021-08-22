@@ -1,5 +1,5 @@
 import { ProjectRepository } from "../../repositories/implementations/ProjectRepository";
-import { UpdateProjectController } from "./UpdateProjectControntoler";
+import { UpdateProjectController } from "./UpdateProjectController";
 import { UpdateProjectService } from "./UpdateProjectService";
 
 const repository = ProjectRepository.getInstance();
