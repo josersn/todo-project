@@ -1,15 +1,16 @@
 import { AppError } from "../../../../shared/errors/AppError";
-import { ProjectReposity } from "../../repositories/implementations/ProjectReposity";
+import { ProjectRepository } from "../../repositories/implementations/ProjectRepository";
+
 import { CreateProjectService } from "./CreateProjectService";
 
 let createProjectService: CreateProjectService;
-let projectReposity: ProjectReposity;
+let projectRepository: ProjectRepository;
 
 describe("Create Project", () => {
 
     beforeAll(() => {
-        projectReposity = new ProjectReposity()
-        createProjectService = new CreateProjectService(projectReposity);
+        projectRepository = ProjectRepository.getInstance();
+        createProjectService = new CreateProjectService(projectRepository);
     })
 
     it("Should be able to create a new project", async () => {

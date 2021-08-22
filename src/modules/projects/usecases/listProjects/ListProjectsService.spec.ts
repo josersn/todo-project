@@ -1,18 +1,19 @@
-import { ProjectReposity } from "../../repositories/implementations/ProjectReposity";
+
+import { ProjectRepository } from "../../repositories/implementations/ProjectRepository";
 import { ListProjectsService } from "./ListProjectsService"
 
 let listProjectsService: ListProjectsService;
-let projectReposity: ProjectReposity;
+let projectRepository: ProjectRepository;
 
 describe("List Project", () => {
 
     beforeAll(() => {
-        projectReposity = new ProjectReposity();
-        listProjectsService = new ListProjectsService(projectReposity);
+        projectRepository = ProjectRepository.getInstance();
+        listProjectsService = new ListProjectsService(projectRepository);
     })
 
     it("Should be able to list a projects", async () => {
-        const project = await projectReposity.create({
+        const project = await projectRepository.create({
             id: "1",
             title: "Novo projeto",
             tasks: []

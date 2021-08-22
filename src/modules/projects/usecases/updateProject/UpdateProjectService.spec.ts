@@ -1,15 +1,16 @@
 import { AppError } from "../../../../shared/errors/AppError";
 import { Project } from "../../entities/Project";
-import { ProjectReposity } from "../../repositories/implementations/ProjectReposity";
+import { ProjectRepository } from "../../repositories/implementations/ProjectRepository";
+
 import { UpdateProjectService } from "./UpdateProjectService"
 
 let updateProjectService: UpdateProjectService;
-let projectRepository: ProjectReposity;
+let projectRepository: ProjectRepository;
 
 describe("Update Project", () => {
 
     beforeAll(() => {
-        projectRepository = new ProjectReposity();
+        projectRepository = ProjectRepository.getInstance();
         updateProjectService = new UpdateProjectService(projectRepository);
     })
 

@@ -1,15 +1,16 @@
 import { AppError } from "../../../../shared/errors/AppError";
 import { Project } from "../../entities/Project";
-import { ProjectReposity } from "../../repositories/implementations/ProjectReposity";
+import { ProjectRepository } from "../../repositories/implementations/ProjectRepository";
+
 import { CreateTaskService } from "./CreateTaskService"
 
 let createTaskService: CreateTaskService;
-let projectRepository: ProjectReposity;
+let projectRepository: ProjectRepository;
 
 describe("Create Task", () => {
 
     beforeAll(() => {
-        projectRepository = new ProjectReposity()
+        projectRepository = ProjectRepository.getInstance()
         createTaskService = new CreateTaskService(projectRepository);
     })
 

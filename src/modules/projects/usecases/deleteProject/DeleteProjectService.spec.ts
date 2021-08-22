@@ -1,15 +1,16 @@
 import { AppError } from "../../../../shared/errors/AppError";
 import { Project } from "../../entities/Project";
-import { ProjectReposity } from "../../repositories/implementations/ProjectReposity";
+import { ProjectRepository } from "../../repositories/implementations/ProjectRepository";
+
 import { DeleteProjectService } from "./DeleteProjectService"
 
 let deleteProjectService: DeleteProjectService;
-let projectRepository: ProjectReposity;
+let projectRepository: ProjectRepository;
 
 describe("Delete Project", () => {
 
     beforeAll(() => {
-        projectRepository = new ProjectReposity();
+        projectRepository = ProjectRepository.getInstance();
         deleteProjectService = new DeleteProjectService(projectRepository);
     });
 
