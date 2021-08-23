@@ -6,9 +6,9 @@ class DeleteProjectController {
     constructor(private service: DeleteProjectService) { }
 
     async handle(req: Request, res: Response): Promise<Response> {
-        const { id } = req.params;
+        const project = req.project
 
-        await this.service.execute(id);
+        await this.service.execute(project);
 
         return res.status(204).send()
     }

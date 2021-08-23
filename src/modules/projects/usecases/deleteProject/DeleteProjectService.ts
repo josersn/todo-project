@@ -1,17 +1,14 @@
 import { AppError } from "../../../../shared/errors/AppError";
+import { Project } from "../../entities/Project";
 import { ProjectRepository } from "../../repositories/implementations/ProjectRepository";
 
 class DeleteProjectService {
 
     constructor(private repository: ProjectRepository) { }
-    async execute(id: string): Promise<void> {
-        const project = await this.repository.findById(id);
-
-        if(!project) {
-            throw new AppError("Project not found", 404);
-        }
+    async execute(project: Project): Promise<void> {
 
         await this.repository.deleteProject(project);
+        
     }
 }
 export { DeleteProjectService }
