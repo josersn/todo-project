@@ -14,26 +14,6 @@ describe("Update Project", () => {
         updateProjectService = new UpdateProjectService(projectRepository);
     })
 
-    it("Should be able to update a project", async () => {
-        const project: Project = {
-            id: "1",
-            title: "New Project",
-            tasks: [],
-            created_at: new Date
-        };
-
-        await projectRepository.create(project);
-        
-        
-        const updatedProject = await updateProjectService.execute({
-            project,
-            title: "new project title"
-        });
-
-        expect(updatedProject.title).toBe("new project title");
-
-    })
-    
     it("Should no be able to update a nonexistent project", () => {
         expect(async () => {
 
