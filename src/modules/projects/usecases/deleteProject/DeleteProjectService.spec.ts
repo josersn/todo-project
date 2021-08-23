@@ -23,7 +23,7 @@ describe("Delete Project", () => {
 
         await projectRepository.create(project);
 
-        await deleteProjectService.execute("uuid-1");
+        await deleteProjectService.execute(project);
 
         const projects = await projectRepository.findProjects();
 
@@ -33,8 +33,14 @@ describe("Delete Project", () => {
 
     it("Should not be able to delete a nonexistent project", async () => {
 
+        const project: Project = {
+            id: "uuid-1",
+            title: "Project Test",
+            tasks: []
+        }
+        
         expect(async () => {
-            await deleteProjectService.execute("uuid-1");
+            await deleteProjectService.execute(project);
         }).rejects.toBeInstanceOf(AppError);
 
     })

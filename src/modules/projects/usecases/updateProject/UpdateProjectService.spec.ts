@@ -18,13 +18,15 @@ describe("Update Project", () => {
         const project: Project = {
             id: "1",
             title: "New Project",
-            tasks: ["New tasks"]
+            tasks: [],
+            created_at: new Date
         };
 
         await projectRepository.create(project);
-
+        
+        
         const updatedProject = await updateProjectService.execute({
-            id: project.id,
+            project,
             title: "new project title"
         });
 
@@ -34,8 +36,14 @@ describe("Update Project", () => {
     
     it("Should no be able to update a nonexistent project", () => {
         expect(async () => {
+
+            const project: Project = {
+                id: "1",
+                title: "New Project",
+                tasks: ["New tasks"]
+            }; 
             await updateProjectService.execute({
-                id: "12",
+                project,
                 title: "new project title"
             });
         }).rejects.toBeInstanceOf(AppError)
