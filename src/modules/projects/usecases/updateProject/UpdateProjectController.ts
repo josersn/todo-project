@@ -8,9 +8,9 @@ class UpdateProjectController {
     async handle(req: Request, res: Response): Promise<Response> {
 
         const { title } = req.body
-        const { id } = req.params;
+        const project = req.project
 
-        const updatedProject = await this.service.execute({ id, title });
+        const updatedProject = await this.service.execute({ project, title });
 
         return res.status(201).json(updatedProject);
     }

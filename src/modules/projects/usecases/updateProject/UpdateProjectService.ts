@@ -3,7 +3,7 @@ import { Project } from "../../entities/Project";
 import { IProjectRepository } from "../../repositories/IProjectRepository";
 
 interface IRequest {
-    id: string;
+    project: Project;
     title: string;
 }
 
@@ -11,12 +11,7 @@ class UpdateProjectService {
 
     constructor(private repository: IProjectRepository) { }
 
-    async execute({ id, title }: IRequest): Promise<Project> {
-        const project = await this.repository.findById(id);
-
-        if (!project) {
-            throw new AppError("Project not found", 404);
-        }
+    async execute({ project, title }: IRequest): Promise<Project> {
 
         await this.repository.updateProject({ project, title });
 
