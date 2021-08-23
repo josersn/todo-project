@@ -1,4 +1,3 @@
-import { AppError } from "../../../../shared/errors/AppError";
 import { Project } from "../../entities/Project";
 import { ProjectRepository } from "../../repositories/implementations/ProjectRepository";
 
