@@ -65,12 +65,10 @@ class ProjectRepository implements IProjectRepository {
 
     async createTask({ title, project }: ICreateTaskDTO): Promise<Project> {
         const index = this.projects.indexOf(project);
+        
+        this.projects[index].tasks.push(title);
 
-        const projectToUpdate = this.projects[index];
-
-        projectToUpdate.tasks.push(title);
-
-        return projectToUpdate;
+        return this.projects[index];
     }
 }
 

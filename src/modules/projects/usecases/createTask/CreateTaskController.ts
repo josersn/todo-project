@@ -7,12 +7,12 @@ class CreateTaskController {
 
     async handle(req: Request, res: Response): Promise<Response> {
 
-        const { id } = req.params;
         const { title } = req.body
+        const project = req.project
+        
+        const projectUpdated = await this.service.execute({ project, title });
 
-        const project = await this.service.execute({ id, title });
-
-        return res.status(201).json(project);
+        return res.status(201).json(projectUpdated);
     }
 }
 

@@ -23,7 +23,7 @@ describe("Create Task", () => {
         await projectRepository.create(project);
 
         const updatedProject = await createTaskService.execute({
-            id: project.id,
+            project,
             title: "New tasks"
         });
 
@@ -32,8 +32,13 @@ describe("Create Task", () => {
 
     it("Should no be able to create a task in nonexistent project", () => {
         expect(async () => {
+
+            const project: Project = {
+                id: "1",
+                title: "New Project"
+            };
             await createTaskService.execute({
-                id: "18",
+                project,
                 title: "New tasks"
             });
         }).rejects.toBeInstanceOf(AppError);
