@@ -1,6 +1,6 @@
 import { NextFunction, Response, Request } from "express";
-import { ProjectRepository } from "../modules/projects/repositories/implementations/ProjectRepository";
-import { AppError } from "../shared/errors/AppError";
+import { ProjectRepository } from "../../../../modules/projects/repositories/implementations/ProjectRepository";
+import { AppError } from "../../../errors/AppError";
 
 export async function ensureProject(req: Request, res: Response, next: NextFunction): Promise<void> {
     const { id } = req.params;
